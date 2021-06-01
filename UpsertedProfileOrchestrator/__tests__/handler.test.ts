@@ -1,6 +1,7 @@
 /* tslint:disable:no-any */
 
 import * as df from "durable-functions";
+import { Task } from "durable-functions/lib/src/classes";
 import { readableReport } from "italia-ts-commons/lib/reporters";
 import { NonEmptyString } from "italia-ts-commons/lib/strings";
 import { context as contextMock } from "../../__mocks__/durable-functions";
@@ -181,6 +182,9 @@ describe("UpsertedProfileOrchestrator", () => {
     const contextMockWithDf = {
       ...contextMock,
       df: {
+        Task: {
+          all: (tasks: readonly Task[]) => tasks
+        },
         callActivityWithRetry: jest
           .fn()
           .mockReturnValueOnce(sendWelcomeMessagesActivityResult),
