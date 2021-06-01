@@ -51,6 +51,7 @@
     "typescript": "^3.9.5"
   },
   "dependencies": {
+    "@azure/storage-queue": "^12.4.0",
     "@pagopa/io-functions-commons": "^18.0.7",
     "abort-controller": "^3.0.0",
     "applicationinsights": "^1.7.4",
