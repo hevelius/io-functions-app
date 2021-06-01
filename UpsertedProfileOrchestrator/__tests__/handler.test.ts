@@ -2,6 +2,7 @@
 
 import * as df from "durable-functions";
 import { Task } from "durable-functions/lib/src/classes";
+import { NonEmptyArray } from "fp-ts/lib/NonEmptyArray";
 import { readableReport } from "italia-ts-commons/lib/reporters";
 import { NonEmptyString } from "italia-ts-commons/lib/strings";
 import { context as contextMock } from "../../__mocks__/durable-functions";
@@ -47,7 +48,6 @@ describe("UpsertedProfileOrchestrator", () => {
     };
 
     const orchestratorHandler = getUpsertedProfileOrchestratorHandler({
-      notifyOn: [],
       sendCashbackMessage: false
     })(contextMockWithDf as any);
 
@@ -101,7 +101,6 @@ describe("UpsertedProfileOrchestrator", () => {
     };
 
     const orchestratorHandler = getUpsertedProfileOrchestratorHandler({
-      notifyOn: [],
       sendCashbackMessage: true
     })(contextMockWithDf as any);
 
@@ -196,7 +195,9 @@ describe("UpsertedProfileOrchestrator", () => {
     };
 
     const orchestratorHandler = getUpsertedProfileOrchestratorHandler({
-      notifyOn: [expectedQueueName],
+      notifyOn: ([expectedQueueName] as unknown) as NonEmptyArray<
+        NonEmptyString
+      >,
       sendCashbackMessage: true
     })(contextMockWithDf as any);
 
