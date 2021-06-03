@@ -69,6 +69,7 @@ export const IConfig = t.intersection([
     PUBLIC_API_KEY: NonEmptyString,
     PUBLIC_API_URL: NonEmptyString,
 
+    EventsQueueStorageConnection: NonEmptyString,
     QueueStorageConnection: NonEmptyString,
 
     SPID_LOGS_PUBLIC_KEY: NonEmptyString,
